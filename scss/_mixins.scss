@@ -1,0 +1,9 @@
+@mixin skin {
+  border: .2rem solid tan;
+  border-radius: 3px;
+}
+
+@mixin animation-setup {
+  animation-duration: $mainAnimationTime / $stepsNumber;
+  animation-iteration-count: $stepsNumber;
+}

@@ -1,0 +1,63 @@
+@keyframes direction {
+  0% {left: 0vw; bottom: 0;}
+  2% {left: 4vw; bottom: .6rem; }
+  6% {left: 7vw; bottom:  .3rem;}
+  10% {left: 10vw; bottom: 0;}
+  12% {left: 14vw; bottom: .6rem; }
+  16% {left: 17vw; bottom:  .3rem;}
+  20% {left: 20vw; bottom: 0;}
+  22% {left: 24vw; bottom: .6rem; }
+  26% {left: 27vw; bottom:  .3rem;}
+  30% {left: 30vw; bottom: 0;}
+  32% {left: 34vw; bottom: .6rem; }
+  36% {left: 37vw; bottom:  .3rem;}
+  40% {left: 40vw; bottom: 0;}
+  42% {left: 44vw; bottom: .6rem; }
+  46% {left: 47vw; bottom:  .3rem;}
+  50% {left: 50vw; bottom: 0;}
+  52% {left: 54vw; bottom: .6rem; }
+  56% {left: 57vw; bottom:  .3rem;}
+  60% {left: 60vw; bottom: 0;}
+  62% {left: 64vw; bottom: .6rem; }
+  66% {left: 67vw; bottom:  .3rem;}
+  70% {left: 70vw; bottom: 0;}
+  72% {left: 74vw; bottom: .6rem; }
+  76% {left: 77vw; bottom:  .3rem;}
+  80% {left: 80vw; bottom: 0;}
+  82% {left: 84vw; bottom: .6rem; }
+  86% {left: 87vw; bottom:  .3rem;}
+  90% {left: 90vw; bottom: 0;}
+  92% {left: 94vw; bottom: .6rem; }
+  96% {left: 97vw; bottom:  .3rem;}
+  100% {left: 100vw; bottom: 0;}
+}
+@mixin leg($side, $sign) {
+  @keyframes leg-#{$side} {
+    0% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+    50% {-webkit-transform: rotate($sign*30deg); transform-origin: $side top;}
+    100% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+  }
+}
+
+@mixin hand($side, $sign) {
+  @keyframes hand-#{$side} {
+    0% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+    50% {-webkit-transform: rotate($sign*46deg); transform-origin: $side top;}
+    100% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+  }
+}
+
+
+@mixin forearm($side, $sign) {
+  @keyframes forearm-#{$side} {
+    0% {transform: rotate(90deg);transform-origin: center bottom;}
+    50% {transform: rotate(90 + 30*$sign + deg);transform-origin: $side bottom;}
+    100% {transform: rotate(90deg);transform-origin: center bottom;}
+  }
+}
+
+//@keyframes leg-left {
+//  0% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+//  50% {-webkit-transform: rotate(30deg); transform-origin: $left top;}
+//  100% {-webkit-transform: rotate(0deg); transform-origin: center top;}
+//}
