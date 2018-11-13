@@ -1,5 +1,5 @@
-@mixin skin {
-  border: .2rem solid tan;
+@mixin skin($color) {
+  border: .2rem solid $color;
   border-radius: 3px;
 }
 

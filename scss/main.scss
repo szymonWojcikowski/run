@@ -1,51 +1,76 @@
 @import 'reset';
+@import 'fonts';
 @import 'common';
 @import 'var';
 @import 'mixins';
 @import "animations";
 
+* {
+  box-sizing: border-box;
+}
+.on-off {
+  position: absolute;
+  text-align: center;
+  font-family: $btnFont;
+  color: #FFF;
+  background-color: #a51603;
+  font-weight: 700;
+  padding: .5rem 1rem;
+  top: 3vh;
+  right: 1vw;
+  width: 7vw;
+  border-style: double;
+}
 .bg {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background-color: deepskyblue;
+
   .person {
+    transform: skew(-10deg);
+    transition: .4s;
     position: absolute;
-    width: 200px;
+    width: 50px;
+    padding-left: 2rem;
     height: 8rem;
     bottom: calc(1px);
     left: 1vw;
     //border: 2px dotted #333;
-    animation-name: direction;
-    animation-duration: $mainAnimationTime;
-    animation-iteration-count: 1;
+    border-radius: 6px;
+    @include steps(10);
+    animation-name: horizontalStep, verticalStep;
+    animation-duration: $mainAnimationTime, $mainAnimationTime/$stepsNumber;
+    animation-iteration-count: 1, $stepsNumber;
+    animation-timing-function: linear, cubic-bezier(0, .97, 1, .08);
     .head {
       width: .6rem;
       height: 1rem;
-      @include skin;
+      transform: skew(-10deg);
+      @include skin(#e2ccb9);
       border-radius: 50%;
-      background-color: #222222;
+      background-color: #e2ccb9;
     }
     .hand {
       position: absolute;
-      bottom: 4rem;
+      bottom: 4.4rem;
+      transform: translate(.1rem);
       width: .1rem;
       height: 2rem;
-      @include skin;
+      @include skin(#e1ebfa);
       .forearm {
         position: relative;
         width: .1rem;
         height: 2rem;
         background-color: #dd1144;
-        @include skin;
+        @include skin(#e2ccb9);
       }
     }
     .hand.left {
       @include hand(left, -1);
       animation-name: hand-left;
       @include animation-setup;
-      border-color: #dd1144;
       .forearm {
         @include forearm(left, -1);
         animation-name: forearm-left;
@@ -55,36 +80,45 @@
     .hand.right {
       @include hand(right, 1);
       animation-name: hand-right;
+      z-index: 5;
       @include animation-setup;
       .forearm {
         @include forearm(right, 1);
         animation-name: forearm-right;
         @include animation-setup;
+        transform: rotate(25deg);
+        transform-origin: center bottom;
       }
     }
     .body {
-      width: .3rem;
       height: 3rem;
-      @include skin;
+      bottom: 4rem;
+      transform: translate(-.2rem, .1rem) skew(-4deg);
+      border-top: 3rem solid #a51603;
+      border-left: .3rem solid transparent;
+      border-right: .4rem solid transparent;
+      border-radius: 25%;
     }
     .leg {
       position: absolute;
       width: .3rem;
       height: 2rem;
-      @include skin;
+      background-color: rgb(11, 11, 27);
+      @include skin(rgb(11, 11, 27));
       .calf {
         position: relative;
+        left: -.2rem;
         bottom: -2rem;
         width: .2rem;
         height: 2rem;
-        @include skin;
+        background-color: #e2ccb9;
+        @include skin(#e2ccb9);
       }
     }
     >.leg.left {
       @include leg(left, -1);
       animation-name: leg-left;
       @include animation-setup;
-      border-color: #dd1144;
       z-index: 4;
     }
     .leg.right {
@@ -96,6 +130,14 @@
         animation-name: leg-right;
         @include animation-setup;
       }
+    }
+  }
+  .paused {
+    animation-play-state: paused;
+    transform: skew(0deg);
+    transition: .4s;
+    & * {
+      animation-play-state: paused;
     }
   }
   .floor {
